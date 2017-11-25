@@ -1,11 +1,22 @@
 version: "3.3"
 services:
   app:
-    image: php:7.0-apache
+    build:
+      context: ./app
     ports:
       - 8080:80
-    volumes:
-      - ./app/src:/var/www/html
+    depends_on:
+      - db
   db:
     image: mysql:8
+    ports:
+      - 3306:3306
+    volumes:
+      # Store data in Host file system
+      - ./db/data:/var/lib/mysql
+      # Restore db from dump
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: example
 
