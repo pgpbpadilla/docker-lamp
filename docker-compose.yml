@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  app:
+    image: php:7.0-apache
+    ports:
+      - 8080:80
+    volumes:
+      - ./app/src:/var/www/html
+  db:
+    image: mysql:8
+

@@ -1,0 +1,7 @@
+.ve
+.idea
+tasks.py
+*.iml
+db
+docker-compose.yml
+requirements.txt
